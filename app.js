@@ -7,10 +7,10 @@ const postRoute = require('./routes/posts');
 const userRoute = require('./routes/users');
 const courseRoute = require('./routes/course')
 const cors = require('cors')
-
+const port = process.env.PORT
 app.use(cors());
 app.use(bodyParser.json())
-
+console.log(port)
 app.use('/posts', postRoute)
 app.use('/users', userRoute)
 app.use('/courses', courseRoute)
@@ -24,4 +24,4 @@ mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true, useUnifiedT
     }
 )
 
-app.listen(8080)
+app.listen(port)
