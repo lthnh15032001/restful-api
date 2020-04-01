@@ -24,4 +24,4 @@ mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true, useUnifiedT
     }
 )
 
-app.listen(3000)
+app.listen(8080)
