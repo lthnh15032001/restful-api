@@ -18,7 +18,7 @@ app.use('/courses', courseRoute)
 app.get('/', (req, res) => {
     res.send("Welcome to my Restful API ")
 })
-mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true },
+mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true },
     () => {
         console.log("Connected to database")
     }
