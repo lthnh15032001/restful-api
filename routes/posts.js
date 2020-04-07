@@ -3,7 +3,7 @@ const router = express.Router();
 const Post = require('../models/Post')
 const verify = require('./verifyToken')
 // get all the posts
-router.get('/', async (req, res) => {
+router.get('/', verify, async (req, res) => {
     // res.send(req.user) // lấy id và iat người dùng
     // User.findbyOne({ _id: req.user })// lấy details người dùng
     try {
