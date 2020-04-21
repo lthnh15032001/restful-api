@@ -6,7 +6,7 @@ const User = require('../models/Users')
 const { registerValidation, LoginValidation } = require('../validation')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-
+const tokenList = {}
 router.post('/register', async (req, res) => {
     // validate data before add usersssss
     const { error } = registerValidation(req.body);
@@ -46,12 +46,37 @@ router.post('/login', async (req, res) => {
     }
     // password is correct ??
     const validPass = await bcrypt.compare(req.body.password, user.password)
-    if(!validPass) return res.status(400).send("Sai password")
+    if (!validPass) return res.status(400).send("Sai password")
 
     //Create and asssign a token
-    const token = jwt.sign({_id: user.id}, process.env.TOKEN_SECRET)
+    const token = jwt.sign(
+        {
+            _id: user.id
+        },
+        process.env.TOKEN_SECRET,
+        {
+            expiresIn: process.env.tokenLife
+        }
+    )
+    const refreshToken = jwt.sign(
+        {
+            _id: user.id
+        },
+        process.env.TOKEN_SECRET,
+        {
+            expiresIn: process.env.refreshTokenLife
+        }
+    )
+    const response = {
+        "token": token,
+        "status": "login",
+        "refreshToken": refreshToken
+    }
+    tokenList[refreshToken] = response
     // res.header('auth_token', token)
-    res.json({'token':token,'code':200})
+
+    // res.json(tokenList)
+    res.json({"token":token, "code":200})
 
 })
 module.exports = router
