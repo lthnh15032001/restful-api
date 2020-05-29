@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 require('dotenv/config')
 const postRoute = require('./routes/posts');
+const todoRoute = require('./routes/todoRoute')
 const userRoute = require('./routes/users');
 const courseRoute = require('./routes/course')
 const swaggerUi = require('swagger-ui-express')
@@ -18,6 +19,9 @@ console.log(port)
 app.use('/posts', postRoute)
 app.use('/users', userRoute)
 app.use('/courses', courseRoute)
+app.use('/todoList', todoRoute)
+
+
 app.use("/data", express.static(__dirname + '/data'));
 app.get('/', swaggerUi.serve, (req, res) => {
     res.send("Welcome to my Restful API ")
