@@ -8,6 +8,7 @@ router.get('/', async (req, res) => {
     // User.findbyOne({ _id: req.user })// lấy details người dùng
     try {
         const todo = await todoList.find();
+        console.log("get all tasks")
         res.json(todo)
     } catch (err) {
         res.json({ message: err })
@@ -30,9 +31,10 @@ router.post('/', async (req, res) => {
     }
 })
 
-router.get('/:toDoId', async (req, res) => {
+router.get('/dat', async (req, res) => {
     try {
-        const todoSpecify = await todoList.findById(req.params.toDoId)
+        const todoSpecify = await todoList.findById(req.query.id)
+        console.log(req.query.id)
         res.json(todoSpecify)
     } catch (err) {
         res.json({ message: err })
