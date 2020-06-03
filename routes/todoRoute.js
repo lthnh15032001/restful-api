@@ -20,7 +20,9 @@ router.post('/', async (req, res) => {
         dateExpiration: req.body.dateExpiration,
         repeat: req.body.repeat,
         star: req.body.star,
-        tag: req.body.tag
+        tag: req.body.tag,
+        todoList: req.body.todoList,
+        note: req.body.note
     });
     try {
         const savedPost = await todo.save();
@@ -57,7 +59,9 @@ router.patch('/:todoId', async (req, res) => {
                     dateExpiration: req.body.dateExpiration,
                     repeat: req.body.repeat,
                     star: req.body.star,
-                    tag: req.body.tag
+                    tag: req.body.tag,
+                    todoList: req.body.todoList,
+                    note: req.body.note
                 }
             })
         res.json(updateTodoList)

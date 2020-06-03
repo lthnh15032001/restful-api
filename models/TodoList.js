@@ -15,7 +15,13 @@ const ToDoSchema = mongoose.Schema({
         type: Boolean,
         default: false
     },
-    tag:{
+    tag: {
+        type: Array,
+    },
+    note: {
+        type: Array,
+    },
+    todoList: {
         type: Array,
     }
 })
