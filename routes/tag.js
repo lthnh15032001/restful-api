@@ -1,24 +1,20 @@
 const express = require('express')
 const router = express.Router()
-const Todo = require('../models/Todo')
+const tag = require('../models/Tag')
 
 
 router.get('/', async (req, res) => {
     try {
-        const todoList = await Todo.find();
-        res.json(todoList)
+        const todo = await tag.find();
+        res.json(todo)
     } catch (err) {
         res.json({ message: err })
     }
 })
 
 router.post('/', async (req, res) => {
-    const todo = new Todo({
-        name: req.body.name,
-        tag: req.body.tag,
-        isComplete: req.body.isComplete,
-        isStar: req.body.isStar,
-        list: req.body.list
+    const todo = new tag({
+        name: req.body.name
     });
     try {
         const savedPost = await todo.save();
@@ -30,7 +26,7 @@ router.post('/', async (req, res) => {
 
 router.get('/:toDoId', async (req, res) => {
     try {
-        const todoSpecify = await Todo.findById(req.params.toDoId)
+        const todoSpecify = await tag.findById(req.params.toDoId)
         res.json(todoSpecify)
     } catch (err) {
         res.json({ message: err })
@@ -39,7 +35,7 @@ router.get('/:toDoId', async (req, res) => {
 
 router.delete('/:toDoId', async (req, res) => {
     try {
-        const removeTodoId = await Todo.deleteOne({ _id: req.params.toDoId })
+        const removeTodoId = await tag.deleteOne({ _id: req.params.toDoId })
         res.json(removeTodoId)
     } catch (err) {
         res.json({ message: err })
@@ -48,17 +44,13 @@ router.delete('/:toDoId', async (req, res) => {
 
 router.patch('/:todoId', async (req, res) => {
     try {
-        const updateTodo = await Todo.updateOne({ _id: req.params.todoId },
+        const updatetag = await tag.updateOne({ _id: req.params.todoId },
             {
                 $set: {
-                    name: req.body.name,
-                    tag: req.body.tag,
-                    isComplete: req.body.isComplete,
-                    isStar: req.body.isStar,
-                    list: req.body.list
+                    name: req.body.name
                 }
             })
-        res.json(updateTodo)
+        res.json(updatetag)
     } catch (err) {
         res.json({ message: err })
     }
