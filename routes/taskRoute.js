@@ -22,7 +22,8 @@ router.post('/', async (req, res) => {
         star: req.body.star,
         tag: req.body.tag,
         todoList: req.body.todoList,
-        note: req.body.note
+        note: req.body.note,
+        isComplete: req.body.isComplete
     });
     try {
         const savedPost = await todo.save();
@@ -61,7 +62,8 @@ router.patch('/:todoId', async (req, res) => {
                     star: req.body.star,
                     tag: req.body.tag,
                     todoList: req.body.todoList,
-                    note: req.body.note
+                    note: req.body.note,
+                    isComplete: req.body.isComplete
                 }
             })
         res.json(updateTodoList)
