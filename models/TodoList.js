@@ -23,6 +23,9 @@ const ToDoSchema = mongoose.Schema({
     },
     todoList: {
         type: Array,
+    },
+    isComplete:{
+        type: Boolean
     }
 })
 module.exports = mongoose.model('todoList', ToDoSchema)
