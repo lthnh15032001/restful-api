@@ -5,6 +5,6 @@ const TagSchema = mongoose.Schema({
         type: String,
         require: true
     }
-})
+}, { versionKey: false })
 
 module.exports = mongoose.model('Tag', TagSchema)
