@@ -14,6 +14,6 @@ const NoteSchema = mongoose.Schema({
     isStar:{
         type: Boolean
     }
-})
+}, { versionKey: false })
 
 module.exports = mongoose.model('Note', NoteSchema)

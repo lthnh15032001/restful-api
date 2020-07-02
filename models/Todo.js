@@ -17,6 +17,6 @@ const TodoSchema = mongoose.Schema({
     list: {
         type: Array,
     }
-})
+}, { versionKey: false })
 
 module.exports = mongoose.model('Todo', TodoSchema)

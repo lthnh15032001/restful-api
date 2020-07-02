@@ -27,6 +27,6 @@ const ToDoSchema = mongoose.Schema({
     isComplete:{
         type: Boolean
     }
-})
+}, { versionKey: false })
 module.exports = mongoose.model('todoList', ToDoSchema)
 
