@@ -16,37 +16,40 @@ router.post('/:tagId', async (req, res) => {
             for (let j = 0; j < idTagInTasks.length; j++) {
                 let resultId = idTagInTasks[j]._id
                 if (resultId == _idTag) {
-                    resultTasks.push({ "tasks": tasksFind[i] })
+                    resultTasks.push(tasksFind[i])
                 } else {
                     // console.log("khong add vao")
                 }
             }
         }
+        let resultTodo = []
         const todoFind = await Todo.find()
         for (let i = 0; i < todoFind.length; i++) {
             let idInTodoList = todoFind[i].tag
             for (let j = 0; j < idInTodoList.length; j++) {
                 let resultId = idInTodoList[j]._id
                 if (resultId == _idTag) {
-                    resultTasks.push({ "todoList": todoFind[i] })
+                    resultTodo.push(todoFind[i])
                 } else {
 
                 }
             }
         }
+        let resultNote = []
         const noteFind = await note.find()
         for (let i = 0; i < noteFind.length; i++) {
             let idNoteFind = noteFind[i].tag
             for (let j = 0; j < idNoteFind.length; j++) {
                 let resultId = idNoteFind[j]._id
                 if (resultId == _idTag) {
-                    resultTasks.push({ "note": noteFind[i] })
+                    resultNote.push(noteFind[i])
                 } else {
 
                 }
             }
         }
-        res.json(resultTasks)
+        let model = { "tasks": resultTasks, "todoList": resultTodo, "note": resultNote }
+        res.json(model)
     } catch (err) {
         res.json({ message: err })
     }
