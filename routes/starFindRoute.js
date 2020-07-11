@@ -1,0 +1,55 @@
+const express = require('express')
+const router = express.Router()
+const tag = require('../models/Tag')
+const todoList = require('../models/TodoList') // TASKS
+const Todo = require('../models/Todo')
+const note = require('../models/Note')
+
+router.post('/', async (req, res) => {
+    try {
+        const _json = req.body
+        const _idTag = _json['idTag']
+        const tagFind = await tag.findOne({ "_id": _idTag })
+        let resultTasks = []
+        const tasksFind = await todoList.find()
+        for (let i = 0; i < tasksFind.length; i++) {
+            let idTagInTasks = tasksFind[i].tag
+            for (let j = 0; j < idTagInTasks.length; j++) {
+                let resultId = idTagInTasks[j]._id
+                if (resultId == _idTag) {
+                    resultTasks.push({ "tasks": tasksFind[i] })
+                } else {
+                    // console.log("khong add vao")
+                }
+            }
+        }
+        const todoFind = await Todo.find()
+        for (let i = 0; i < todoFind.length; i++) {
+            let idInTodoList = todoFind[i].tag
+            for (let j = 0; j < idInTodoList.length; j++) {
+                let resultId = idInTodoList[j]._id
+                if (resultId == _idTag) {
+                    resultTasks.push({ "todoList": todoFind[i] })
+                } else {
+
+                }
+            }
+        }
+        const noteFind = await note.find()
+        for (let i = 0; i < noteFind.length; i++) {
+            let idNoteFind = noteFind[i].tag
+            for (let j = 0; j < idNoteFind.length; j++) {
+                let resultId = idNoteFind[j]._id
+                if (resultId == _idTag) {
+                    resultTasks.push({ "note": noteFind[i] })
+                } else {
+
+                }
+            }
+        }
+        res.json(resultTasks)
+    } catch (err) {
+        res.json({ message: err })
+    }
+})
+module.exports = router

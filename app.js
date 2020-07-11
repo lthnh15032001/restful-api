@@ -10,6 +10,7 @@ const courseRoute = require('./routes/course')
 const tagRoute = require('./routes/tag')
 const todoRoute = require('./routes/todoRoute')
 const noteRoute = require('./routes/noteRoute')
+const starFindRoute = require('./routes/starFindRoute')
 const swaggerUi = require('swagger-ui-express')
 const swaggerDocument = require('./swagger.json');
 const cors = require('cors')
@@ -26,6 +27,7 @@ app.use('/tasks', taskRoute)
 app.use('/note', noteRoute)
 app.use('/tag', tagRoute)
 app.use('/todoList', todoRoute)
+app.use('/findTag', starFindRoute)
 app.use("/data", express.static(__dirname + '/data'));
 app.get('/', swaggerUi.serve, (req, res) => {
     res.send("Welcome to my Restful API ")
