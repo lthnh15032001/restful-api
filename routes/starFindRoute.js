@@ -5,10 +5,9 @@ const todoList = require('../models/TodoList') // TASKS
 const Todo = require('../models/Todo')
 const note = require('../models/Note')
 
-router.post('/', async (req, res) => {
+router.post('/:tagId', async (req, res) => {
     try {
-        const _json = req.body
-        const _idTag = _json['idTag']
+        const _idTag = req.params.tagId;
         const tagFind = await tag.findOne({ "_id": _idTag })
         let resultTasks = []
         const tasksFind = await todoList.find()
