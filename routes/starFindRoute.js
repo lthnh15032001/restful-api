@@ -48,7 +48,7 @@ router.post('/:tagId', async (req, res) => {
                 }
             }
         }
-        let model = { "tasks": resultTasks, "todoList": resultTodo, "note": resultNote }
+        let model = [{ "tasks": resultTasks, "todoList": resultTodo, "note": resultNote }]
         res.json(model)
     } catch (err) {
         res.json({ message: err })
