@@ -30,7 +30,7 @@ app.use('/todoList', todoRoute)
 app.use('/findTag', starFindRoute)
 app.use("/data", express.static(__dirname + '/data'));
 app.get('/', swaggerUi.serve, (req, res) => {
-    res.send("Welcome to my Restful API ")
+    res.send("Welcome to DevC Raw Team's Restful API ")
 })
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
