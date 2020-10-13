@@ -1,44 +1,12 @@
-const express = require('express')
-const app = express();
-const mongoose = require('mongoose')
-const bodyParser = require('body-parser')
-require('dotenv/config')
-// const postRoute = require('./routes/posts');
-// const taskRoute = require('./routes/taskRoute')
-// const userRoute = require('./routes/users');
-// const courseRoute = require('./routes/course')
-// const tagRoute = require('./routes/tag')
-// const todoRoute = require('./routes/todoRoute')
-// const noteRoute = require('./routes/noteRoute')
-// const starFindRoute = require('./routes/starFindRoute')
-const users = require('./devC/routes/users')
-const swaggerUi = require('swagger-ui-express')
-const swaggerDocument = require('./swagger.json');
-const cors = require('cors')
-const port = process.env.PORT
-app.use(cors());
-app.use(bodyParser.json())
-console.log(port)
+"use strict";
 
+const express = require("express");
+const Server = require("./lib/server");
 
-// app.use('/posts', postRoute)
-app.use('/users', users)
-// app.use('/courses', courseRoute)
-// app.use('/tasks', taskRoute)
-// app.use('/note', noteRoute)
-// app.use('/tag', tagRoute)
-// app.use('/todoList', todoRoute)
-// app.use('/findTag', starFindRoute)
-app.use("/data", express.static(__dirname + '/data'));
-app.get('/', swaggerUi.serve, (req, res) => {
-    res.send("Welcome to DevC Raw Team's Restful API ")
-})
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+let server = new Server(express);
 
-mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true },
-    () => {
-        console.log("Connected to database")
-    }
-)
+server.initDb(); // Connect to the database.
+server.initRoutes(); // Use the router location.
+server.initViews(); // Set up the server views.
 
-app.listen(port)
+server.run();
