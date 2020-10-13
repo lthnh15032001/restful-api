@@ -11,7 +11,6 @@ const userSchema = new mongoose.Schema({
         occupations: { type: String },
         passport: { type: String },
         id_card: { type: String },
-        required: true
     },
     updated_at: { type: Date },
     created_at: { type: Date },

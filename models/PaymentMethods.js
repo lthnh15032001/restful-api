@@ -1,6 +1,6 @@
 
 const mongoose = require('mongoose');
-const PaymentMethods = new mongoose.Schema({
+const PaymentMethodsModel = new mongoose.Schema({
     user_id: { type: String },
     type: { type: String },
     account_name: { type: String },
@@ -12,4 +12,4 @@ const PaymentMethods = new mongoose.Schema({
     updated_at: { type: Date },
 })
 
-module.exports = mongoose.model('PaymentMethods', PaymentMethods)
+module.exports = mongoose.model('PaymentMethods', PaymentMethodsModel)
