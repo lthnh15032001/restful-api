@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const CreditProfilesModel = new mongoose.Schema({
+const CreditProfiles = new mongoose.Schema({
     user_id: { type: String },
     credit_score: { type: Number },
     amount_net_worth: { type: Number },
@@ -9,4 +9,4 @@ const CreditProfilesModel = new mongoose.Schema({
     amount_hourly_wages: { type: Number }
 })
 
-module.exports = mongoose.model('CreditProfilesModel', CreditProfilesModel)
+module.exports = mongoose.model('CreditProfiles', CreditProfiles)
