@@ -12,10 +12,11 @@ router.get('/', async (req, res) => {
     }
 })
 router.post('/', async (req, res) => {
-    const { id, name } = req.body;
+    const { name, iconUrl, parentId } = req.body;
     const DebtTypeModel = new DebtTypes({
-        id: id,
-        name: name
+        name: name,
+        iconUrl: iconUrl,
+        parentId: parentId,
     })
     try {
         const DebtTypeModelSave = await DebtTypeModel.save()

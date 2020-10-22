@@ -12,10 +12,11 @@ router.get('/', async (req, res) => {
     }
 })
 router.post('/', async (req, res) => {
-    const { id, name } = req.body;
-    const InComeTypeModel = new InComeType({
-        id: id,
-        name: name
+    const { name, iconUrl, parentId } = req.body;
+    const InComeTypeModel = new IncomeType({
+        name: name,
+        iconUrl: iconUrl,
+        parentId: parentId,
     })
     try {
         const InComeTypeModelSave = await InComeTypeModel.save()

@@ -12,13 +12,14 @@ router.get('/', async (req, res) => {
     }
 })
 router.post('/', async (req, res) => {
-    const { id, name } = req.body;
-    const Spending = new SpendingTypes({
-        id: id,
-        name: name
+    const { name, iconUrl, parentId } = req.body;
+    const SpendingTypeModel = new SpendingTypes({
+        name: name,
+        iconUrl: iconUrl,
+        parentId: parentId,
     })
     try {
-        const SpendingSave = await Spending.save()
+        const SpendingSave = await SpendingTypeModel.save()
         res.json(SpendingSave)
     } catch (err) {
         res.json({ message: err })
