@@ -2,7 +2,7 @@
 "use strict";
 const express = require('express')
 const router = express.Router()
-const InComeType = require('../models/InComeType')
+const IncomeType = require('../models/InComeType')
 router.get('/', async (req, res) => {
     try {
         const InCome = await InComeType.find()
@@ -13,6 +13,7 @@ router.get('/', async (req, res) => {
 })
 router.post('/', async (req, res) => {
     const { name, iconUrl, parentId } = req.body;
+    console.log(name, iconUrl, parentId)
     const InComeTypeModel = new IncomeType({
         name: name,
         iconUrl: iconUrl,
