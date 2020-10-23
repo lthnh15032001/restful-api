@@ -5,7 +5,7 @@ const router = express.Router()
 const IncomeType = require('../models/InComeType')
 router.get('/', async (req, res) => {
     try {
-        const InCome = await InComeType.find()
+        const InCome = await IncomeType.find()
         res.json(InCome)
     } catch (err) {
         res.json({ message: err })
