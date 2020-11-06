@@ -33,7 +33,7 @@ const userSchema = new mongoose.Schema({
         passport: { type: String },
         id_card: { type: String },
     },
-    spending: [SpendingSchema],
+    spending: { type: Array },
     debt: [DebtsSchema],
     income: [IncomeSchema],
     updated_at: { type: Date },
