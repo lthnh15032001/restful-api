@@ -1,27 +1,27 @@
 const mongoose = require('mongoose');
 // const Spendings = require('./Spendings.js')
-const SpendingSchema = new mongoose.Schema({
-    spending_type: { type: String },
-    amount: { type: Number },
-    period: { type: String },
-    payment_method: { type: String },
-    spending_created_at: { type: Date },
-})
-const DebtsSchema = new mongoose.Schema({
-    debt_type: { type: String },
-    amount: { type: Number },
-    period: { type: String },
-    payment_method: { type: String },
-    debt_created_at: { type: Date },
-})
-const IncomeSchema = new mongoose.Schema({
-    income_type: { type: String },
-    amount: { type: Number },
-    period: { type: String },
-    payment_method: { type: String },
-    income_created_at: { type: Date },
-})
-const userSchema = new mongoose.Schema({
+// const SpendingSchema = new mongoose.Schema({
+//     spending_type: { type: String },
+//     amount: { type: Number },
+//     period: { type: String },
+//     payment_method: { type: String },
+//     spending_created_at: { type: Date },
+// })
+// const DebtsSchema = new mongoose.Schema({
+//     debt_type: { type: String },
+//     amount: { type: Number },
+//     period: { type: String },
+//     payment_method: { type: String },
+//     debt_created_at: { type: Date },
+// })
+// const IncomeSchema = new mongoose.Schema({
+//     income_type: { type: String },
+//     amount: { type: Number },
+//     period: { type: String },
+//     payment_method: { type: String },
+//     income_created_at: { type: Date },
+// })
+const Users = new mongoose.Schema({
     id_fb: { type: String },
     profile: {
         full_name: { type: String },
@@ -35,11 +35,11 @@ const userSchema = new mongoose.Schema({
         id_card: { type: String },
     },
     spending: { type: Array },
-    debt: [DebtsSchema],
-    income: [IncomeSchema],
+    debt: { type: Array },
+    income: { type: Array },
     updated_at: { type: Date },
     created_at: { type: Date },
     last_active: { type: Date },
 })
 
-module.exports = mongoose.model('userSchema', userSchema)
+module.exports = mongoose.model('Users', Users)
