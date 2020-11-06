@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
     }
 })
 router.post('/', async (req, res) => {
-    const { profile, updated_at, created_at, last_active, spending, debt, income } = req.body;
+    const { profile, updated_at, created_at, last_active, spending, debt, income, id_fb } = req.body;
     const {
         full_name,
         avatar,
@@ -28,6 +28,7 @@ router.post('/', async (req, res) => {
     // const { debt_type, debt_amount, debt_period, debt_payment_method, debt_created_at } = debt
     // const { income_type, income_amount, income_period, income_payment_method, income_created_at } = income
     const UsersModel = new userSchema({
+        id_fb: id_fb,
         profile: {
             full_name: full_name,
             avatar: avatar,

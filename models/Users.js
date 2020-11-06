@@ -22,6 +22,7 @@ const IncomeSchema = new mongoose.Schema({
     income_created_at: { type: Date },
 })
 const userSchema = new mongoose.Schema({
+    id_fb: { type: String },
     profile: {
         full_name: { type: String },
         avatar: { type: String },
