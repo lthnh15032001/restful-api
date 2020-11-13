@@ -63,7 +63,7 @@ router.post('/', async (req, res) => {
     }
 })
 
-router.patch('/:userId', async (req, res) => {
+router.post('/:userId', async (req, res) => {
     const { profile, updated_at, created_at, last_active, spending, debt, income } = req.body;
     const {
         full_name,
