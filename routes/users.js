@@ -11,7 +11,15 @@ router.get('/', async (req, res) => {
         res.json({ message: err })
     }
 })
-
+router.get('/:userId', async (req, res) => {
+    const _id = req.params.userId;
+    try {
+        const users = await Users.find({ _id: _id })
+        res.json(users)
+    } catch (err) {
+        res.json({ message: err })
+    }
+})
 
 router.post('/', async (req, res) => {
     const { profile, updated_at, created_at, last_active, spending, debt, income, id_fb } = req.body;
