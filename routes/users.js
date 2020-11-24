@@ -88,6 +88,23 @@ router.post('/updateDebt/:userId', async (req, res) => {
         res.json({ message: err })
     }
 })
+router.post('/updatePaymentMethod/:userId', async (req, res) => {
+    const { paymentMethod } = req.body
+    if (!paymentMethod) {
+        res.json({ error: "Nhập đầy đủ", })
+    }
+    try {
+        const _id = req.params.userId;
+        const updateUser = await Users.updateOne({ _id: _id }, {
+            $push: {
+                paymentMethod: paymentMethod
+            }
+        })
+        res.json(updateUser)
+    } catch (err) {
+        res.json({ message: err })
+    }
+})
 router.post('/updateIncome/:userId', async (req, res) => {
     const { income } = req.body
     if (!income) {

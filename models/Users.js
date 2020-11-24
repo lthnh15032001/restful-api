@@ -40,6 +40,7 @@ const Users = new mongoose.Schema({
     updated_at: { type: Date },
     created_at: { type: Date },
     last_active: { type: Date },
+    paymentMethod: {type: Array}
 })
 
 module.exports = mongoose.model('Users', Users)
