@@ -22,7 +22,7 @@ router.get('/:userId', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-    const { profile, updated_at, created_at, last_active, spending, debt, income, id_fb, creditprofile } = req.body;
+    const { profile, updated_at, created_at, last_active, spending, debt, income, id_fb, creditprofile, paymentMethod } = req.body;
     const {
         full_name,
         avatar,
@@ -51,6 +51,7 @@ router.post('/', async (req, res) => {
         debt: debt,
         income: income,
         creditprofile: creditprofile,
+        paymentMethod:paymentMethod,
         updated_at: updated_at,
         created_at: created_at,
         last_active: last_active
