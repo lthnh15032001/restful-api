@@ -22,7 +22,7 @@ router.get('/:userId', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-    const { profile, updated_at, created_at, last_active, spending, debt, income, id_fb } = req.body;
+    const { profile, updated_at, created_at, last_active, spending, debt, income, id_fb, creditprofile } = req.body;
     const {
         full_name,
         avatar,
@@ -50,6 +50,7 @@ router.post('/', async (req, res) => {
         spending: spending,
         debt: debt,
         income: income,
+        creditprofile: creditprofile,
         updated_at: updated_at,
         created_at: created_at,
         last_active: last_active
@@ -70,7 +71,23 @@ router.post('/', async (req, res) => {
         res.json({ message__: err })
     }
 })
-
+router.post('/updateCreditProfile/:userId', async (req, res) => {
+    const { creditprofile } = req.body
+    if (!creditprofile) {
+        res.json({ error: "Nhập đầy đủ", })
+    }
+    try {
+        const _id = req.params.userId;
+        const updateUser = await Users.updateOne({ _id: _id }, {
+            $push: {
+                creditprofile: creditprofile
+            }
+        })
+        res.json(updateUser)
+    } catch (err) {
+        res.json({ message: err })
+    }
+})
 router.post('/updateDebt/:userId', async (req, res) => {
     const { debt } = req.body
     if (!debt) {

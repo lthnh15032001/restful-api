@@ -37,10 +37,11 @@ const Users = new mongoose.Schema({
     spending: { type: Array },
     debt: { type: Array },
     income: { type: Array },
+    creditprofile: { type: Array },
     updated_at: { type: Date },
     created_at: { type: Date },
     last_active: { type: Date },
-    paymentMethod: {type: Array}
+    paymentMethod: { type: Array }
 })
 
 module.exports = mongoose.model('Users', Users)
